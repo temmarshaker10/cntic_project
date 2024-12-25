@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "858466539574",
+    "project_id": "cntic-project",
+    "storage_bucket": "cntic-project.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:858466539574:android:ae0efe0794668ac19a6097",
+        "android_client_info": {
+          "package_name": "com.example.cntic_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "858466539574-k66qpd1ak10sg30hmbsctlbakkveqpqi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cntic_project",
+            "certificate_hash": "34fb5317ba563d02f248a789bda3fa208904324b"
+          }
+        },
+        {
+          "client_id": "858466539574-fkafk52br4dng9i5rqb2p2tlpgt9u3cf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyqtvXuYbPFKLTz52fNMcgy6N0L4JXzJQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "858466539574-fkafk52br4dng9i5rqb2p2tlpgt9u3cf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "858466539574-vque7m65lclds0ofd7siorrbf927vklo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.cnticProject"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
