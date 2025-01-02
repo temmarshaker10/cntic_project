@@ -3,6 +3,7 @@ import 'package:cntic_project/components/mybutton.dart';
 import 'package:cntic_project/components/mytext.dart';
 import 'package:cntic_project/components/mytextfield.dart';
 import 'package:cntic_project/components/squareTaile.dart';
+import 'package:cntic_project/pages/home_page.dart';
 import 'package:cntic_project/pages/reset_password.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
 
-  Future<void> signIn() async {
+  Future signIn() async {
     // Show loading circle while attempting to sign in
     showDialog(
       context: context,
@@ -39,15 +40,22 @@ class _LoginPageState extends State<LoginPage> {
         email: email.text,
         password: password.text,
       );
+      Navigator.of(context).pop(); // Dismiss the loading dialog
+
+      // Ensure the widget is mounted before updating UI
+      if (mounted) return HomePage();
 
       // Dismiss the loading dialog and show success message
-      Navigator.of(context).pop();
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text('Login Success'),
-      ));
-    } on FirebaseAuthException catch (e) {
       // Dismiss the loading dialog
       Navigator.of(context).pop();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Login Success')),
+      );
+    } on FirebaseAuthException catch (e) {
+      // Ensure the widget is mounted before updating UI
+      if (!mounted) return;
+
+      Navigator.of(context).pop(); // Dismiss the loading dialog
 
       // Handle specific FirebaseAuth errors
       String errorMessage;
@@ -92,9 +100,17 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   @override
+  void dispose() {
+    // Clean up the controller when the widget is removed from the tree.
+    email.dispose();
+    password.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.deepPurple[200],
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -115,7 +131,7 @@ class _LoginPageState extends State<LoginPage> {
                 //Welcome Back you`ve been missed
                 Mytext(
                     text: "Welcome Back you`ve been missed",
-                    color: Colors.grey.shade400,
+                    color: Colors.grey.shade600,
                     fontsize: 20,
                     isBold: false),
                 SizedBox(
@@ -157,7 +173,7 @@ class _LoginPageState extends State<LoginPage> {
                         },
                         child: Mytext(
                             text: "Forgot Password?",
-                            color: Colors.grey,
+                            color: Colors.blue,
                             fontsize: 15.0,
                             isBold: false),
                       ),
@@ -190,7 +206,7 @@ class _LoginPageState extends State<LoginPage> {
                       )),
                       Mytext(
                           text: "OR Sign In with",
-                          color: Colors.grey,
+                          color: Colors.grey.shade600,
                           fontsize: 20,
                           isBold: false),
                       Expanded(
@@ -227,7 +243,7 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     Mytext(
                         text: "Don`t have an account?",
-                        color: Colors.grey,
+                        color: Colors.grey.shade600,
                         fontsize: 15.0,
                         isBold: false),
                     GestureDetector(

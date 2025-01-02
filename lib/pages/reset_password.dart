@@ -1,3 +1,4 @@
+// ignore: unused_import
 import 'package:cntic_project/components/mybutton.dart';
 import 'package:cntic_project/components/mytext.dart';
 import 'package:cntic_project/components/mytextfield.dart';
@@ -74,7 +75,7 @@ class _ResetPasswordState extends State<ResetPassword> {
         });
 
     try {
-      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email.trim());
       Navigator.of(context).pop(); // Close the progress dialog
 
       // Show success dialog
@@ -98,9 +99,9 @@ class _ResetPasswordState extends State<ResetPassword> {
       Navigator.of(context).pop(); // Close the progress dialog
 
       String errorMessage;
-      if (e.code == 'invalid-email') {
+      if (e.message == 'invalid-email') {
         errorMessage = 'The email address is invalid.';
-      } else if (e.code == 'user-not-found') {
+      } else if (e.message == 'user-not-found') {
         errorMessage = 'No user found with this email address.';
       } else {
         errorMessage = 'An unexpected error occurred. Please try again later.';

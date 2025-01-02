@@ -33,13 +33,14 @@ class _RegisterPageState extends State<RegisterPage> {
   // Function to handle user registration
   Future<void> signUp() async {
     // Check if passwords match
-    if (password.text != confirmPassword.text) {
+    if (password.text.trim() != confirmPassword.text.trim()) {
       _showErrorDialog('Passwords do not match.');
       return;
     }
 
     // Check if the email is valid
-    if (!RegExp(r"^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$").hasMatch(email.text)) {
+    if (!RegExp(r"^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")
+        .hasMatch(email.text.trim())) {
       _showErrorDialog('Invalid email format.');
       return;
     }
@@ -60,8 +61,8 @@ class _RegisterPageState extends State<RegisterPage> {
       // Attempt to create a user with email and password
       UserCredential userCredential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: email.text,
-        password: password.text,
+        email: email.text.trim(),
+        password: password.text.trim(),
       );
       addUser(email.text, username.text);
 
@@ -103,7 +104,7 @@ class _RegisterPageState extends State<RegisterPage> {
     // Create a new user with the given email and username
     await FirebaseFirestore.instance
         .collection("users")
-        .add({'email': email, 'username': username});
+        .add({'email': email.trim(), 'username': username.trim()});
   }
 
   // Function to show an error dialog with the provided message
@@ -128,7 +129,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.deepPurple[200],
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -142,7 +143,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 // Welcome Text
                 Mytext(
                     text: "Hi There",
-                    color: Colors.grey.shade500,
+                    color: Colors.grey.shade600,
                     fontsize: 30,
                     isBold: false),
                 SizedBox(height: 20),
@@ -197,7 +198,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                       Mytext(
                           text: "OR Sign In with",
-                          color: Colors.grey,
+                          color: Colors.grey.shade600,
                           fontsize: 20,
                           isBold: false),
                       Expanded(
@@ -231,7 +232,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   children: [
                     Mytext(
                         text: "Already have an account?",
-                        color: Colors.grey,
+                        color: Colors.grey.shade600,
                         fontsize: 15.0,
                         isBold: false),
                     GestureDetector(

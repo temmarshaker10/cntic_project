@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cntic_project/components/mytext.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -28,12 +29,17 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         backgroundColor: Colors.blue,
       ),
-      body: Center(
-        child: Mytext(
-            text: "Welcome:" + user.email!,
-            color: Colors.black,
-            fontsize: 20,
-            isBold: true),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+            child: Mytext(
+                text: "Welcome:" + user.email!,
+                color: Colors.black,
+                fontsize: 20,
+                isBold: true),
+          ),
+        ],
       ),
     );
   }

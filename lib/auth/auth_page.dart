@@ -1,5 +1,8 @@
+// ignore_for_file: unused_import
+
 import 'package:cntic_project/pages/home_page.dart';
 import 'package:cntic_project/pages/loginorregister.dart';
+import 'package:cntic_project/screens/onBoarding_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 // ignore: unused_import
 import 'package:firebase_core/firebase_core.dart';
