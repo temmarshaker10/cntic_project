@@ -19,6 +19,14 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
+  bool isDark = false;
+
+  // Toggle function for dark mode
+  void toggleTheme(bool value) {
+    setState(() {
+      isDark = value;
+    });
+  }
 
   Future signIn() async {
     // Show loading circle while attempting to sign in

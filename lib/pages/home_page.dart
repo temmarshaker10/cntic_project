@@ -1,10 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cntic_project/components/mytext.dart';
+import 'package:cntic_project/components/theme_switch.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({
+    super.key,
+  });
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -16,13 +19,19 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: DrawerHeader(
+            child: Column(
+          children: [],
+        )),
+      ),
       appBar: AppBar(
         actions: [
           IconButton(
               onPressed: () {
                 FirebaseAuth.instance.signOut();
               },
-              icon: Icon(Icons.logout))
+              icon: Icon(Icons.logout)),
         ],
         title: Mytext(
             text: "Welcome", color: Colors.white, fontsize: 30, isBold: true),

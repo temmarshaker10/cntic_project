@@ -1,4 +1,5 @@
 import 'package:cntic_project/components/mytext.dart';
+import 'package:cntic_project/components/theme_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
